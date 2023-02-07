@@ -13,7 +13,6 @@ variable "aws_region" {
 variable "aws_account" {
   type        = string
   description = "AWS Account"
-  default     = "030238460522"
 }
 
 variable "project_name" {
