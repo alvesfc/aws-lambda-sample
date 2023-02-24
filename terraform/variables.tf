@@ -7,7 +7,7 @@ variable "aws_profile" {
 variable "aws_region" {
   type        = string
   description = "AWS Region"
-  default     = "us-esat-1"
+  default     = "us-east-1"
 }
 
 variable "aws_account" {
