@@ -8,6 +8,8 @@ resource "aws_lambda_function" "lambda_function" {
   runtime = var.lambda_runtime
   handler = var.lambda_handler
 
+  memory_size = 512
+
   role = aws_iam_role.lambda_exec.arn
 
  snap_start {
@@ -15,6 +17,11 @@ resource "aws_lambda_function" "lambda_function" {
  }
 
   publish = true
+
+  environment {
+    variables = var.environment_variables
+  }
+
 }
 
 resource "aws_cloudwatch_log_group" "lambda_log_group" {
