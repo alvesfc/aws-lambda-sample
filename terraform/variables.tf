@@ -32,3 +32,19 @@ variable "infra_env" {
   description = "Infrastructure environment"
   default     = "staging"
 }
+
+variable "database_user" {
+  type        = string
+  description = "The database user"
+}
+
+variable "database_password" {
+  type        = string
+  description = "The database password"
+}
+
+variable "artifact_name" {
+  type        = string
+  description = "The jar file name"
+  default = "javaAwsLambda-1.0-aws.jar"
+}
