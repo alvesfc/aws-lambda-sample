@@ -15,8 +15,8 @@ provider "aws" {
 module "rds" {
   source = "./modules/rds"
 
-  db_username  = "postgres"
-  db_password  = "postgres"
+  db_username  = var.database_user
+  db_password  = var.database_password
   project_name = var.project_name
   infra_env    = var.infra_env
 }
@@ -24,8 +24,8 @@ module "rds" {
 module "s3" {
   source        = "./modules/s3"
   bucket_name   = lower("${var.project_name}-my-bucket")
-  object_key    = "javaAwsLambda-1.0-aws.jar"
-  object_source = "${abspath(path.root)}/../javaAwsLambda/target/javaAwsLambda-1.0-aws.jar"
+  object_key    = var.artifact_name
+  object_source = "${abspath(path.root)}/../javaAwsLambda/target/${var.artifact_name}"
   project_name  = var.project_name
   infra_env     = var.infra_env
 }
@@ -35,15 +35,15 @@ module "lambda" {
 
   function_name  = "${var.project_name}-lambda"
   lambda_handler = "org.springframework.cloud.function.adapter.aws.FunctionInvoker::handleRequest"
-  s3_object_key  = "javaAwsLambda-1.0-aws.jar"
+  s3_object_key  = var.artifact_name
   bucket_name    = module.s3.lambda_bucket_name
   project_name   = var.project_name
   infra_env      = var.infra_env
 
   environment_variables = {
     "SPRING_DATASOURCE_URL"      = module.rds.database_url
-    "SPRING_DATASOURCE_USERNAME" = "postgres"
-    "SPRING_DATASOURCE_PASSWORD" = "postgres"
+    "SPRING_DATASOURCE_USERNAME" = var.database_user
+    "SPRING_DATASOURCE_PASSWORD" = var.database_password
   }
 
   depends_on = [module.s3, module.rds]
