@@ -35,3 +35,8 @@ variable "project_name" {
   type        = string
   description = "The Project Name"
 }
+
+variable "environment_variables" {
+  type = map(string)
+  description = "The environment variables for the lambda function"
+}
