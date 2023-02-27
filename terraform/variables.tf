@@ -13,6 +13,7 @@ variable "aws_region" {
 variable "aws_account" {
   type        = string
   description = "AWS Account"
+  default     = 724397176020
 }
 
 variable "project_name" {
@@ -61,5 +62,4 @@ variable "artifact_name" {
 variable "vpc_security_group_ids" {
   description = "A list of security group IDs to associate with"
   type        = list(string)
-  default     = ["sg-01c5d61d3a2f98175"]
 }
