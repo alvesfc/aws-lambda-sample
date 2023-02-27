@@ -4,6 +4,7 @@ import org.sample.aws.lambda.javaAwsLambda.model.LambdaModel;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
@@ -11,6 +12,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
 
+@Component
 public class LambdaDAO  {
 
     public static final String TABLE = "lambdamodel";

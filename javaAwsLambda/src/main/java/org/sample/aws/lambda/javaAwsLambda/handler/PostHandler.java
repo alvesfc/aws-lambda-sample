@@ -7,9 +7,11 @@ import org.sample.aws.lambda.javaAwsLambda.model.LambdaModel;
 import org.sample.aws.lambda.javaAwsLambda.service.LambdaService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import java.util.function.Function;
 
+@Component
 public class PostHandler implements Function<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
     private final ObjectMapper objectMapper;
     private final LambdaService lambdaService;
