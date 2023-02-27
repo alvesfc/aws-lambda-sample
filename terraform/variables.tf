@@ -13,7 +13,6 @@ variable "aws_region" {
 variable "aws_account" {
   type        = string
   description = "AWS Account"
-  default     = 724397176020
 }
 
 variable "project_name" {
@@ -37,14 +36,11 @@ variable "infra_env" {
 variable "database_user" {
   type        = string
   description = "The database user"
-  default     = "postgres"
 }
 
 variable "database_password" {
   type        = string
   description = "The database password"
-  default     = "postgres"
-
 }
 
 variable "db_name" {
