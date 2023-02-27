@@ -1,21 +1,10 @@
 package org.sample.aws.lambda.javaAwsLambda.model;
 
-
-import javax.persistence.*;
-
-
-@Entity
-@Table(name = "lambdaModel")
 public class LambdaModel {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
-    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "message", nullable = false)
     private String message;
 
     public String getName() {
