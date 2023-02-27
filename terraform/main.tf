@@ -15,10 +15,12 @@ provider "aws" {
 module "rds" {
   source = "./modules/rds"
 
-  db_username  = var.database_user
-  db_password  = var.database_password
-  project_name = var.project_name
-  infra_env    = var.infra_env
+  db_name                = var.db_name
+  db_username            = var.database_user
+  db_password            = var.database_password
+  project_name           = var.project_name
+  infra_env              = var.infra_env
+  vpc_security_group_ids = var.vpc_security_group_ids
 }
 
 module "s3" {
@@ -41,7 +43,9 @@ module "lambda" {
   infra_env      = var.infra_env
 
   environment_variables = {
-    "SPRING_DATASOURCE_URL"      = module.rds.database_url
+    "SPRING_DATASOURCE_URL" = module.rds.database_url
+    "SPRING_DATASOURCE_URL" = "jdbc:postgresql://${module.rds.database_url}/${var.db_name}"
+
     "SPRING_DATASOURCE_USERNAME" = var.database_user
     "SPRING_DATASOURCE_PASSWORD" = var.database_password
   }
