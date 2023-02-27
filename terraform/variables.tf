@@ -36,15 +36,30 @@ variable "infra_env" {
 variable "database_user" {
   type        = string
   description = "The database user"
+  default     = "postgres"
 }
 
 variable "database_password" {
   type        = string
   description = "The database password"
+  default     = "postgres"
+
+}
+
+variable "db_name" {
+  type        = string
+  description = "The database username"
+  default     = "sampleDatabase"
 }
 
 variable "artifact_name" {
   type        = string
   description = "The jar file name"
-  default = "javaAwsLambda-1.0-aws.jar"
+  default     = "javaAwsLambda-1.0-aws.jar"
+}
+
+variable "vpc_security_group_ids" {
+  description = "A list of security group IDs to associate with"
+  type        = list(string)
+  default     = ["sg-01c5d61d3a2f98175"]
 }
