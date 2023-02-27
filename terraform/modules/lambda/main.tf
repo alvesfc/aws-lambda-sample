@@ -9,6 +9,7 @@ resource "aws_lambda_function" "lambda_function" {
   handler = var.lambda_handler
 
   memory_size = 512
+  timeout = 10
 
   role = aws_iam_role.lambda_exec.arn
 
@@ -28,6 +29,8 @@ resource "aws_cloudwatch_log_group" "lambda_log_group" {
   name = "/aws/lambda/${aws_lambda_function.lambda_function.function_name}"
 
   retention_in_days = 7
+
+  depends_on = [aws_lambda_function.lambda_function]
 }
 
 resource "aws_iam_role" "lambda_exec" {
